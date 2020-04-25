@@ -1,0 +1,25 @@
+<h2>this is a todo page</h2>
+<!-- <ul>
+	
+	<li>temporory todo item a</li>
+	<li>temporory todo item b</li>
+</ul> -->
+
+<ul>
+	{% for todo_item in all_items %}
+	<li>{{  todo_item.content  }}
+		<form action="/deleteTodo/{{todo_item.id}}/" style="display: inline;" method="post">{% csrf_token %}
+		<!-- just for security -->
+		<!-- <input type="text" name="content"/> -->
+		<input type="submit" value="Delete"/>
+</form>
+	<!-- </li> -->
+
+	{% endfor %}
+</ul>
+
+<form action="/addTodo/" method="post">{% csrf_token %}
+	<!-- just for security -->
+	<input type="text" name="content"/>
+	<input type="submit" value="Add"/>
+</form>
